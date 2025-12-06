@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Social Media Fake Profile Detector</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+</head>
+<body class="bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 min-h-screen">
+    <div class="min-h-screen flex items-center justify-center p-4">
+        <div class="w-full max-w-2xl">
+            <!-- Header -->
+            <div class="text-center mb-8">
+                <h1 class="text-5xl font-bold bg-gradient-to-r from-red-400 via-purple-400 to-pink-400 bg-clip-text text-transparent mb-2">
+                    <i class="fas fa-shield-alt"></i> Fake Profile Detector
+                </h1>
+                <p class="text-lg text-gray-300"> Social Media Fake Profile Detection</p>
+                <p class="text-sm text-gray-400 mt-1">Powered by ML | Ensemble Learning | Real-time Verification</p>
+            </div>
+
+            <!-- Main Card -->
+            <div class="bg-slate-800/50 backdrop-blur-xl border border-purple-500/30 rounded-2xl shadow-2xl p-8 mb-6">
+                
+                <!-- Input Form -->
+                <form id="predictionForm" class="space-y-6">
+                    
+                    <!-- Row 1: Profile Pic & Private -->
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-200 mb-2">
+                                <i class="fas fa-image text-purple-400"></i> Profile Picture
+                            </label>
+                            <select id="profilePic" class="w-full px-4 py-3 bg-slate-700/50 border border-purple-400/50 rounded-lg text-white focus:outline-none focus:border-purple-400 transition">
+                                <option value="1">✓ Yes</option>
+                                <option value="0">✗ No</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-200 mb-2">
+                                <i class="fas fa-lock text-purple-400"></i> Private Account
+                            </label>
+                            <select id="private" class="w-full px-4 py-3 bg-slate-700/50 border border-purple-400/50 rounded-lg text-white focus:outline-none focus:border-purple-400 transition">
+                                <option value="0">✓ Public</option>
+                                <option value="1">✗ Private</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Row 2: Username & Fullname -->
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-200 mb-2">
+                                <i class="fas fa-user text-purple-400"></i> Username
+                            </label>
+                            <input type="text" id="username" placeholder="e.g., john_smith123" 
+                                class="w-full px-4 py-3 bg-slate-700/50 border border-purple-400/50 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-purple-400 transition">
+                            <div class="text-xs text-gray-400 mt-1">Numbers: <span id="usernameNumsInfo">0%</span></div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-200 mb-2">
+                                <i class="fas fa-id-badge text-purple-400"></i> Full Name
+                            </label>
+                            <input type="text" id="fullname" placeholder="e.g., John Smith" 
+                                class="w-full px-4 py-3 bg-slate-700/50 border border-purple-400/50 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-purple-400 transition">
+                            <div class="text-xs text-gray-400 mt-1">Words: <span id="fullnameWordsInfo">0</span> | Numbers: <span id="fullnameNumsInfo">0%</span></div>
+                        </div>
+                    </div>
+
+                    <!-- Row 3: Bio -->
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-200 mb-2">
+                            <i class="fas fa-quote-left text-purple-400"></i> Bio / Description
+                        </label>
+                        <textarea id="bio" placeholder="e.g., Photographer | Traveler | Follow for daily updates" rows="3"
+                            class="w-full px-4 py-3 bg-slate-700/50 border border-purple-400/50 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-purple-400 transition resize-none"></textarea>
+                        <div class="text-xs text-gray-400 mt-1">Length: <span id="bioLengthInfo">0</span> characters</div>
+                    </div>
+
+                    <!-- Row 4: Engagement Metrics -->
+                    <div class="grid grid-cols-3 gap-4">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-200 mb-2">
+                                <i class="fas fa-images text-purple-400"></i> Posts
+                            </label>
+                            <input type="number" id="posts" placeholder="0" min="0" value="0"
+                                class="w-full px-4 py-3 bg-slate-700/50 border border-purple-400/50 rounded-lg text-white focus:outline-none focus:border-purple-400 transition">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-200 mb-2">
+                                <i class="fas fa-heart text-purple-400"></i> Followers
+                            </label>
+                            <input type="number" id="followers" placeholder="0" min="0" value="0"
+                                class="w-full px-4 py-3 bg-slate-700/50 border border-purple-400/50 rounded-lg text-white focus:outline-none focus:border-purple-400 transition">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-200 mb-2">
+                                <i class="fas fa-user-plus text-purple-400"></i> Following
+                            </label>
+                            <input type="number" id="following" placeholder="0" min="0" value="0"
+                                class="w-full px-4 py-3 bg-slate-700/50 border border-purple-400/50 rounded-lg text-white focus:outline-none focus:border-purple-400 transition">
+                        </div>
+                    </div>
+
+                    <!-- Row 5: External URL & Name Match -->
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-200 mb-2">
+                                <i class="fas fa-link text-purple-400"></i> External URL
+                            </label>
+                            <select id="externalUrl" class="w-full px-4 py-3 bg-slate-700/50 border border-purple-400/50 rounded-lg text-white focus:outline-none focus:border-purple-400 transition">
+                                <option value="0">✗ No</option>
+                                <option value="1">✓ Yes</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-200 mb-2">
+                                <i class="fas fa-exchange-alt text-purple-400"></i> Name = Username
+                            </label>
+                            <select id="nameEqUsername" class="w-full px-4 py-3 bg-slate-700/50 border border-purple-400/50 rounded-lg text-white focus:outline-none focus:border-purple-400 transition" disabled>
+                                <option value="0">✗ No</option>
+                                <option value="1">✓ Yes</option>
+                            </select>
+                            <div class="text-xs text-gray-400 mt-1">(Auto-calculated)</div>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="w-full py-4 mt-8 bg-gradient-to-r from-red-500 via-purple-500 to-pink-500 hover:from-red-600 hover:via-purple-600 hover:to-pink-600 text-white font-bold rounded-lg transition transform hover:scale-105 shadow-lg text-lg">
+                        <i class="fas fa-wand-magic-sparkles"></i> Predict Profile
+                    </button>
+                </form>
+            </div>
+
+            <!-- Results Section -->
+            <div id="resultsContainer" class="hidden">
+                <div class="bg-slate-800/50 backdrop-blur-xl border border-purple-500/30 rounded-2xl shadow-2xl p-8">
+                    
+                    <!-- Prediction Badge -->
+                    <div id="predictionBadge" class="text-center mb-6">
+                        <!-- Populated by JS -->
+                    </div>
+
+                    <!-- Confidence Scores -->
+                    <div class="grid grid-cols-2 gap-4 mb-6">
+                        <div class="bg-slate-700/50 border border-green-500/30 rounded-lg p-4 text-center">
+                            <p class="text-gray-400 text-sm mb-1">Real Profile</p>
+                            <p class="text-2xl font-bold text-green-400"><span id="realProb">0</span>%</p>
+                        </div>
+                        <div class="bg-slate-700/50 border border-red-500/30 rounded-lg p-4 text-center">
+                            <p class="text-gray-400 text-sm mb-1">Fake Profile</p>
+                            <p class="text-2xl font-bold text-red-400"><span id="fakeProb">0</span>%</p>
+                        </div>
+                    </div>
+
+                    <!-- AI Reasoning -->
+                    <div class="bg-gradient-to-r from-purple-900/50 to-pink-900/50 border border-purple-400/30 rounded-lg p-6 mb-6">
+                        <p class="text-sm text-gray-300 font-semibold text-purple-300 mb-3">
+                            <i class="fas fa-robot"></i> AI Analysis
+                        </p>
+                        <p id="reasoning" class="text-gray-200 leading-relaxed text-sm"></p>
+                    </div>
+
+                    <!-- Features Used -->
+                    <details class="bg-slate-700/50 border border-purple-400/30 rounded-lg p-4">
+                        <summary class="cursor-pointer text-gray-300 font-semibold hover:text-purple-300">
+                            <i class="fas fa-list"></i> Features Used (Click to expand)
+                        </summary>
+                        <div id="featuresUsed" class="mt-4 grid grid-cols-2 gap-2 text-sm text-gray-300">
+                            <!-- Populated by JS -->
+                        </div>
+                    </details>
+
+                    <!-- Action Buttons -->
+                    <button onclick="document.getElementById('resultsContainer').classList.add('hidden'); document.getElementById('predictionForm').reset(); updateCalculations();" 
+                        class="w-full mt-6 py-3 bg-slate-700/50 border border-purple-400/50 hover:bg-slate-700 text-white font-semibold rounded-lg transition">
+                        <i class="fas fa-redo"></i> Check Another Profile
+                    </button>
+                </div>
+            </div>
+
+            <!-- Loading Spinner -->
+            <div id="loadingSpinner" class="hidden text-center">
+                <div class="inline-block">
+                    <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-400"></div>
+                </div>
+                <p class="text-gray-300 mt-4">Analyzing profile...</p>
+            </div>
+
+            <!-- Footer -->
+            <div class="text-center mt-8 text-gray-400 text-sm">
+                <p>🎓 Social Media Fake Profile Detection</p>
+                <p>Team: Umer Shafiq, Ibtisam Ali | Teacher: Usman Anwer</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = 'http://localhost:5001/predict'; // Change to your Flask API URL
+
+        // Real-time calculations
+        function updateCalculations() {
+            const username = document.getElementById('username').value;
+            const fullname = document.getElementById('fullname').value;
+            const bio = document.getElementById('bio').value;
+
+            // Username: nums/length
+            const usernameNums = (username.match(/\d/g) || []).length;
+            const usernameNumsRatio = username.length > 0 ? (usernameNums / username.length).toFixed(2) : 0;
+            document.getElementById('usernameNumsInfo').textContent = (usernameNumsRatio * 100).toFixed(0) + '%';
+
+            // Fullname: words and nums/length
+            const fullnameWords = fullname.trim().length > 0 ? fullname.trim().split(/\s+/).length : 0;
+            const fullnameNums = (fullname.match(/\d/g) || []).length;
+            const fullnameNumsRatio = fullname.length > 0 ? (fullnameNums / fullname.length).toFixed(2) : 0;
+            document.getElementById('fullnameWordsInfo').textContent = fullnameWords;
+            document.getElementById('fullnameNumsInfo').textContent = (fullnameNumsRatio * 100).toFixed(0) + '%';
+
+            // Bio length
+            document.getElementById('bioLengthInfo').textContent = bio.length;
+
+            // Name == Username
+            const nameMatch = username.toLowerCase() === fullname.toLowerCase().replace(/\s+/g, '') ? 1 : 0;
+            document.getElementById('nameEqUsername').value = nameMatch;
+        }
+
+        // Event listeners for real-time updates
+        ['username', 'fullname', 'bio'].forEach(id => {
+            document.getElementById(id).addEventListener('input', updateCalculations);
+        });
+
+        // Form submission
+        document.getElementById('predictionForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const fullname = document.getElementById('fullname').value;
+            const bio = document.getElementById('bio').value;
+
+            // Calculate derived features
+            const usernameNums = (username.match(/\d/g) || []).length;
+            const usernameNumsRatio = username.length > 0 ? usernameNums / username.length : 0;
+
+            const fullnameNums = (fullname.match(/\d/g) || []).length;
+            const fullnameNumsRatio = fullname.length > 0 ? fullnameNums / fullname.length : 0;
+            const fullnameWords = fullname.trim().length > 0 ? fullname.trim().split(/\s+/).length : 0;
+
+            const nameMatch = username.toLowerCase() === fullname.toLowerCase().replace(/\s+/g, '') ? 1 : 0;
+
+            // Prepare payload
+            const payload = {
+                'profile pic': parseInt(document.getElementById('profilePic').value),
+                'nums/length username': usernameNumsRatio,
+                'fullname words': fullnameWords,
+                'nums/length fullname': fullnameNumsRatio,
+                'name==username': nameMatch,
+                'description length': bio.length,
+                'external URL': parseInt(document.getElementById('externalUrl').value),
+                'private': parseInt(document.getElementById('private').value),
+                '#posts': parseInt(document.getElementById('posts').value) || 0,
+                '#followers': parseInt(document.getElementById('followers').value) || 0,
+                '#following': parseInt(document.getElementById('following').value) || 0
+            };
+
+            console.log('Sending payload:', payload);
+
+            // Show loading
+            document.getElementById('loadingSpinner').classList.remove('hidden');
+            document.getElementById('resultsContainer').classList.add('hidden');
+
+            try {
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.error || 'API Error');
+                }
+
+                // Display results
+                displayResults(data, payload);
+            } catch (error) {
+                alert('Error: ' + error.message);
+                console.error(error);
+            } finally {
+                document.getElementById('loadingSpinner').classList.add('hidden');
+            }
+        });
+
+        function displayResults(data, features) {
+            const isFake = data.prediction.is_fake === 1;
+            const realProb = (data.confidence.real_profile_prob * 100).toFixed(1);
+            const fakeProb = (data.confidence.fake_profile_prob * 100).toFixed(1);
+
+            // Prediction badge
+            const badge = document.getElementById('predictionBadge');
+            badge.innerHTML = isFake 
+                ? '<div class="text-6xl mb-2">⚠️</div><p class="text-3xl font-bold text-red-400">FAKE PROFILE DETECTED</p><p class="text-gray-400 mt-2">This profile shows signs of being fake or inauthentic</p>'
+                : '<div class="text-6xl mb-2">✅</div><p class="text-3xl font-bold text-green-400">REAL PROFILE</p><p class="text-gray-400 mt-2">This profile appears to be authentic</p>';
+
+            // Confidence
+            document.getElementById('realProb').textContent = realProb;
+            document.getElementById('fakeProb').textContent = fakeProb;
+
+            // Reasoning
+            document.getElementById('reasoning').textContent = data.reasoning;
+
+            // Features
+            const featuresDiv = document.getElementById('featuresUsed');
+            featuresDiv.innerHTML = Object.entries(features)
+                .map(([key, val]) => `<div><span class="text-purple-300">${key}:</span> <span class="text-gray-300">${typeof val === 'number' ? val.toFixed(3) : val}</span></div>`)
+                .join('');
+
+            // Show results
+            document.getElementById('resultsContainer').classList.remove('hidden');
+            document.getElementById('resultsContainer').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Initial calculation
+        updateCalculations();
+    </script>
+</body>
+</html>

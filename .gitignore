@@ -1,0 +1,44 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+venv2/
+*.egg-info/
+dist/
+build/
+
+# Models & data
+*.pkl
+*.h5
+*.joblib
+
+# Large files
+*.mp4
+*.dll
+*.bin
+
+# Environment
+.env
+.env.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# MLflow & DVC
+mlruns/
+.dvc/
+dvc.lock
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.dbvenv2/ 

@@ -1,0 +1,16 @@
+# MLflow Configuration for ELADFP
+experiment_name: "ELADFP-Production"
+tracking_uri: "./mlruns"
+artifact_location: "./mlruns"
+
+# Model Registry
+model_name: "fake_profile_detector"
+model_version: "v1.0"
+model_stage: "Production"
+
+# Tags
+tags:
+  project: "ELADFP"
+  team: "Umer Shafiq, Ibtisam Ali"
+  model_type: "Ensemble (RF + LR + XGBoost)"
+  training_date: "2024"
