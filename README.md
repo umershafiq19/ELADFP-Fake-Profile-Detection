@@ -410,7 +410,7 @@ For questions or feedback, please reach out:
 
 - **Email**: [umershafiq603@gmail.com]
 - **GitHub Issues**: [Create an issue](https://github.com/umershafiq19/ELADFP-Fake-Profile-Detection/issues)
-- **LinkedIn**: [[Your LinkedIn](https://www.linkedin.com/in/umershafiq9/)]
+- **LinkedIn**: [[My LinkedIn](https://www.linkedin.com/in/umershafiq9/)]
 
 ---
 
