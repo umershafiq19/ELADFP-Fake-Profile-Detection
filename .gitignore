@@ -31,9 +31,12 @@ build/
 *.swp
 *.swo
 
-# MLflow & DVC
+# MLflow
 mlruns/
-.dvc/
+
+# DVC
+.dvc/cache
+.dvc/tmp
 dvc.lock
 
 # Logs
