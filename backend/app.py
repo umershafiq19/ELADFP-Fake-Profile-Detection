@@ -54,9 +54,10 @@ def create_app():
     
     return app
 
+# Create app instance for gunicorn
+app = create_app()
+
 if __name__ == '__main__':
-    app = create_app()
-    
     host = os.getenv('API_HOST', '0.0.0.0')
     port = int(os.getenv('API_PORT', 5000))
     debug = os.getenv('FLASK_DEBUG', 'True') == 'True'

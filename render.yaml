@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: eladfp-api
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn -w 4 -b 0.0.0.0:$PORT backend.app:app
+    envVars:
+      - key: FLASK_ENV
+        value: production
+      - key: GEMINI_API_KEY
+        sync: false
