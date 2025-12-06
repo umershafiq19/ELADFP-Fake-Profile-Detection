@@ -1,0 +1,5 @@
+outs:
+- md5: 8e3f67f3f60645ebf9b90e2ce255ff76
+  size: 2187741
+  hash: md5
+  path: best_eladfp_model.pkl
